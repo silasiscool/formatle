@@ -1,0 +1,45 @@
+* {
+  /* outline: 1px dashed blue; */
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@600&display=swap');
+
+body {
+  font-family: 'Libre Franklin', sans-serif;
+
+}
+
+.row {
+  display: flex;
+  width: fit-content;
+  margin: auto;
+}
+
+.cell {
+  width: 3ch;
+  height: 3ch;
+  line-height: 3ch;
+  text-align: center;
+  margin: 1ch;
+  box-sizing: border-box;
+}
+
+.cell:not(.filled) {
+  border: 1px solid black;
+}
+
+.cell.filled {
+  color: white;
+}
+
+.cell.green {
+  background-color: #6aaa64;
+}
+
+.cell.yellow {
+  background-color: #c9b458;
+}
+
+.cell.grey {
+  background-color: #787c7e;
+}
