@@ -9,12 +9,13 @@ let guessNumber = 0;
 let wordList;
 let currentWord;
 let guessesList = [];
+let usesList;
 
 let validChars = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','0','1','2','3','4','5','6','7','8','9'];
 
 let currentGuess = "";
 
-let  data = async () => await fetch('https://script.google.com/macros/s/AKfycby8aQ1_eae_zU86FVhFD1jtgI-QgAjTrLkPF0ERSxvSrtcxxOKfV5AciQsupaYlWvvE3A/exec').then(res=>res.json());
+let  data = async () => await fetch('https://script.google.com/macros/s/AKfycbx10t-QS9EaP8S0wZZ2XN_VR0XvK7EfXvxAVWDB3LwddBQ3qmRDjz0VY24GkxwBGxtamQ/exec').then(res=>res.json());
 
 setBoard();
 
@@ -24,6 +25,7 @@ async function setBoard() {
     guesses = res.numberOfGuesses;
     wordList = res.wordList;
     currentWord = res.currentWord;
+    usesList = res.typeDescriptions;
 
     if (localStorage.currentWord && JSON.parse(localStorage.currentWord) == currentWord) {
       guessesList = JSON.parse(localStorage.guessesList);
@@ -59,8 +61,6 @@ async function setBoard() {
     enter(true)
   });
   currentGuess = '';
-
-
 
   console.log('Setup Complete');
 }
@@ -113,10 +113,10 @@ async function enter(starting) {
     }
 
     if (currentGuess == currentWord) {
-      sendAlert('You won!')
-      guessNumber = guesses
+      sendAlert('You won!\nThe filetype was ' + currentWord+'.\n'+'Here are the use(s) of this filetype:\n'+usesList.join('\n'));
+      guessNumber = guesses;
     } else if (guessNumber == guesses) {
-      sendAlert('You lost. The word was ' + currentWord+'.')
+      sendAlert('You lost.\nThe filetype was ' + currentWord+'.\n'+'Here are the use(s) of this filetype:\n'+usesList.join('\n'));
     }
 
     currentGuess = ""
