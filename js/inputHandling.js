@@ -59,19 +59,28 @@ function backspaceKey() {
 async function enterKey() {
     let currentFormat = (await getCurrentFormat()).toUpperCase(); // Get the current format
     let formatLength = currentFormat.length; // Get the length of the current format
+    let rows = document.querySelectorAll('#game-board > .row'); // Get all rows from the DOM
+    let guessNum = formatleData.guessList.length; // Get the current guess number
+    let currentRow = rows[guessNum]; // Get the current row
+
     if (currentGuess.length < formatLength) {
-        window.alert("Not enough letters"); // Show an alert if the current guess is not full
+        // window.alert("Not enough letters"); // Show an alert if the current guess is not full
+        currentRow.classList.add('shake'); // Add the 'shake' class to the current row to animate it
+        currentRow.addEventListener('animationend', () => {
+            currentRow.classList.remove('shake'); // Remove the 'shake' class to reset the animation
+        }, {once: true}); // Remove the event listener after it has been called once
         return; // Ignore if the current guess is not full
     }
     let sameLengthFormats = await getSameLengthFormats(); // Get formats with the same length as the current format
     if (!sameLengthFormats.includes(currentGuess.toUpperCase())) {
-        window.alert("Not a valid format"); // Show an alert if the current guess is not in the list of formats with the same length
+        // window.alert("Not a valid format"); // Show an alert if the current guess is not in the list of formats with the same length
+        currentRow.classList.add('shake'); // Add the 'shake' class to the current row to animate it
+        currentRow.addEventListener('animationend', () => {
+            currentRow.classList.remove('shake'); // Remove the 'shake' class to reset the animation
+        }, {once: true}); // Remove the event listener after it has been called once
         return; // Ignore if the current guess is not in the list of formats with the same length
     }
 
-    let rows = document.querySelectorAll('#game-board > .row'); // Get all rows from the DOM
-    let guessNum = formatleData.guessList.length; // Get the current guess number
-    let currentRow = rows[guessNum]; // Get the current row
     let cells = currentRow.querySelectorAll('.cell'); // Get all cells in the current row
 
     let currentGuessArray = currentGuess.split(''); // Split the current guess into an array of letters
