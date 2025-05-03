@@ -27,7 +27,6 @@ localStorage.formatleData = JSON.stringify(formatleData); // Store the formatleD
 
 async function loadSave() {
     if (formatleData.guessList.length > 0) { // If there are previous guesses, update the previous cells
-        console.log('Previous guesses found, updating cells...');
 
         let currentFormat = await getCurrentFormat(); // Get the current format
 
@@ -64,8 +63,6 @@ async function loadSave() {
                     cellColors[i] = '1'; // Set the color state to '1' (gray)
                 }
             });
-
-            console.log(cellColors);
 
             
             currentGuessArray.forEach((item, i) => { // Set the text content of the cells to the letters of the current guess

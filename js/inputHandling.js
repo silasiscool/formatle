@@ -142,7 +142,6 @@ async function enterKey() {
 async function checkGameState() {
     let currentFormat = (await getCurrentFormat()).toUpperCase(); // Get the current format
     let currentGuess = formatleData.guessList[formatleData.guessList.length-1]; // Get the last guess from the list of guesses
-    console.table({currentFormat, currentGuess});
 
     if (currentGuess.toUpperCase() == currentFormat) {
         setTimeout(() => {
