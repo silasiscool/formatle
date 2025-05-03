@@ -15,12 +15,15 @@ let seed = currentDate.getTime(); // Get the timestamp in milliseconds
 let formatleData = localStorage.formatleData
 
 if (!formatleData) {
-    document.getElementById('welcome-dialog').show()
+    document.getElementById('help-dialog').show()
 }
 
-document.getElementById('close-welcome-dialog').addEventListener('click', () => {
-    document.getElementById('welcome-dialog').close()
+document.getElementById('close-help-dialog').addEventListener('click', () => {
+    document.getElementById('help-dialog').close()
 });
+document.getElementById('help-button').addEventListener('click', () => {
+    document.getElementById('help-dialog').show()
+})
 
 if (!formatleData || JSON.parse(localStorage.formatleData).currentSeed != seed) {
     // If formatleData is not in local storage or the seed (and therfore date) has changed, create a new formatleData object

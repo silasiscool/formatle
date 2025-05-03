@@ -221,15 +221,18 @@ a:not(.with-icon) {
 
 
 
-#welcome-dialog {
+#help-dialog {
     /* background-color: var(--background); */
     color: var(--white);
     border-radius: 10px;
     padding: 1rem;
     top: 15rem;
+    width: 90%;
+    max-width: 90ch;
+    /* margin: 5%; */
 }
 
-#close-welcome-dialog {
+#close-help-dialog {
     display: flex;
     position: absolute;
     top: 0.5rem;
@@ -241,6 +244,35 @@ a:not(.with-icon) {
     border-radius: 100%;
 }
 
-#close-welcome-dialog:hover {
+#close-help-dialog:hover {
     opacity: 40%;
+}
+
+#menu {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    border-radius: 10px;
+    position: absolute;
+    top: 0;
+    height: 100%;
+    right: 1rem;
+    align-items: center;
+}
+
+#menu button {
+    background: none;
+    border: none;
+    color: var(--white);
+    font-size: 1.5rem;
+    cursor: pointer;
+    border-radius: 100px;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+}
+
+
+#menu button:hover {
+    opacity: 60%;
 }
