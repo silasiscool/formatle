@@ -1,0 +1,57 @@
+/* Keyboard styles */
+
+#keyboard-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+#keyboard {
+    display: flex;
+    flex-direction: column;
+}
+
+#keyboard > .row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0.5rem 0;
+}  
+
+#keyboard > .row > .key {
+    font-family: var(--body-font-family);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 2rem;
+    height: 3rem;
+    margin: 0.25rem;
+    border: none;
+    outline: none;
+    border-radius: 0.25rem;
+    color: var(--white);
+    font-size: 1.25rem;
+    transition: background-color 0.3s ease;
+}
+
+#keyboard > .row > .key.wide {
+    width: 4rem;
+    font-size: 1rem;
+}
+
+#keyboard > .row > .key[data-color-state='0'] {
+    background-color: var(--color-state-0);
+}
+
+#keyboard > .row > .key[data-color-state='1'] {
+    background-color: var(--color-state-1);
+}
+
+#keyboard > .row > .key[data-color-state='2'] {
+    background-color: var(--color-state-2);
+}
+
+#keyboard > .row > .key[data-color-state='3'] {
+    background-color: var(--color-state-3);
+}

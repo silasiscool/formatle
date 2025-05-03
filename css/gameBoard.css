@@ -1,0 +1,73 @@
+#game-board {
+  display: flex;
+  flex-direction: column;
+}
+
+#game-board .row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#game-board .cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 3rem;
+  aspect-ratio: 1;
+  margin: 0.25rem;
+  font-weight: 700;
+  font-size: 1.75rem;
+  box-sizing: border-box;
+  transition: background-color 0.3s ease;
+}
+
+#game-board > .row > .cell[data-color-state='0'] {
+    border: 1px solid var(--accent);
+}
+
+#game-board > .row > .cell[data-color-state='1'] {
+    background-color: var(--color-state-1);
+}
+
+#game-board > .row > .cell[data-color-state='2'] {
+    background-color: var(--color-state-2);
+}
+
+#game-board > .row > .cell[data-color-state='3'] {
+    background-color: var(--color-state-3);
+}
+
+@keyframes cell-filled {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+#game-board .cell.filled {
+    animation: cell-filled 0.125s ease-in-out;
+}
+
+@keyframes cell-colored {
+  0% {
+    transform: scale(1, 1);
+    background: none;
+    border: 1px solid var(--accent);
+  }
+  50% {
+    transform: scale(1, 0);
+  }
+  100% {
+    transform: scale(1, 1);
+  }
+}
+
+#game-board > .row > .cell:not([data-color-state='0']) {
+  animation: cell-colored .5s ease-in-out;
+}
