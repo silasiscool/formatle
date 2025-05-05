@@ -7,6 +7,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  font-weight: 700;
+  font-size: 1.75rem;
 }
 
 #game-board .cell {
@@ -16,10 +18,23 @@
   width: 3rem;
   aspect-ratio: 1;
   margin: 0.25rem;
-  font-weight: 700;
-  font-size: 1.75rem;
+  
   box-sizing: border-box;
   transition: background-color 0.3s ease;
+}
+
+#game-board .row:before{
+  content: ".";
+  width: 0;
+  position: relative;
+  right: 1rem;
+  bottom: 0;
+  opacity: 0%;
+}
+
+#game-board .row:has(.cell.cell.filled):before{
+  opacity: 100%;
+  transition: opacity 0.125s ease;
 }
 
 #game-board > .row > .cell[data-color-state='0'] {
