@@ -63,8 +63,7 @@ async function enterKey() {
     let guessNum = formatleData.guessList.length; // Get the current guess number
     let currentRow = rows[guessNum]; // Get the current row
 
-    if (currentGuess.length < formatLength) {
-        // window.alert("Not enough letters"); // Show an alert if the current guess is not full
+    if (currentGuess.length < formatLength) { // Check if the current guess is not full
         currentRow.classList.add('shake'); // Add the 'shake' class to the current row to animate it
         currentRow.addEventListener('animationend', () => {
             currentRow.classList.remove('shake'); // Remove the 'shake' class to reset the animation
@@ -72,8 +71,7 @@ async function enterKey() {
         return; // Ignore if the current guess is not full
     }
     let sameLengthFormats = await getSameLengthFormats(); // Get formats with the same length as the current format
-    if (!sameLengthFormats.includes(currentGuess.toUpperCase())) {
-        // window.alert("Not a valid format"); // Show an alert if the current guess is not in the list of formats with the same length
+    if (!sameLengthFormats.map(format => format.toUpperCase()).includes(currentGuess.toUpperCase())) { // Check if the current guess is in the list of formats with the same length
         currentRow.classList.add('shake'); // Add the 'shake' class to the current row to animate it
         currentRow.addEventListener('animationend', () => {
             currentRow.classList.remove('shake'); // Remove the 'shake' class to reset the animation
@@ -151,16 +149,17 @@ async function enterKey() {
 async function checkGameState() {
     let currentFormat = (await getCurrentFormat()).toUpperCase(); // Get the current format
     let currentGuess = formatleData.guessList[formatleData.guessList.length-1]; // Get the last guess from the list of guesses
+    let description = (await getCurrentFormatDescription()).join('\n'); // Get the description of the current format
 
     if (currentGuess.toUpperCase() == currentFormat) {
         setTimeout(() => {
-            if (window.confirm("You win!\n\nDo you want to learn about this file format?")) // Show an alert if the last guess is correct
+            if (window.confirm(`You win!\nThe answer was ${currentFormat}\n\nHere is a description of this file format:\n${description}\n\nDo you want to learn more about this file format?`)) // Show an alert if the last guess is correct
                 window.open(`https://www.google.com/search?q=${currentFormat}-file-format`, '_blank'); // Open a new tab with the search query
         }, 500); // Wait for 1/2 second before showing the alert
         gameOver = true; // Set the game over flag to true
     } else if (formatleData.guessList.length >= await getNumAllowedGuesses()) { // Check if the user has used all their guesses
         setTimeout(() => {
-            if (window.confirm(`You lose\nThe correct file format was ${currentFormat}\n\nDo you want to learn about this file format?`)) // Show an alert if the last guess is correct
+            if (window.confirm(`You lose\nThe correct file format was ${currentFormat}\n\nHere is a description of this file format:\n${description}\n\nDo you want to learn more about this file format?`)) // Show an alert if the last guess is correct
                 window.open(`https://www.google.com/search?q=${currentFormat}-file-format`, '_blank'); // Open a new tab with the search query
         }, 500); // Wait for 1/2 second before showing the alert
         gameOver = true; // Set the game over flag to true
