@@ -229,7 +229,6 @@ a:not(.with-icon) {
     top: 15rem;
     width: 90%;
     max-width: 90ch;
-    /* margin: 5%; */
 }
 
 #close-help-dialog {
